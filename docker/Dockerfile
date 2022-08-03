@@ -1,6 +1,6 @@
 # BASE STAGE
 # =============================
-FROM node:14-alpine AS base
+FROM node:16-alpine AS base
 
 
 # =============================
@@ -19,7 +19,7 @@ COPY package*.json ./
 
 RUN \ 
     NODE_ENV=development \
-    npm ci --only=development && \
+    npm ci --only=development --legacy-peer-deps && \
     npm cache clean --force
 
 COPY . .
@@ -38,7 +38,7 @@ FROM base AS source
 WORKDIR /node
 COPY package*.json ./
 RUN \ 
-    npm ci --only=production && \
+    npm ci --only=production --legacy-peer-deps && \
     npm cache clean --force
 
 COPY . .
