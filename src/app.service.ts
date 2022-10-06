@@ -6,4 +6,3 @@ export class AppService {
     return 'UP server! ' + new Date();
   }
 }
- 
